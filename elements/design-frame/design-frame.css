@@ -12,11 +12,6 @@
   background-color: white;
 }
 
-#designCanvas .selected-element {
-  outline: solid 3px rgba(66, 87, 203, 0.8);
-  outline-offset: -3px;
-}
-
 #designCanvas *::after {
   position: absolute;
   content: ' ';

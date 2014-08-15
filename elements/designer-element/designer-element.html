@@ -24,77 +24,47 @@
   <link rel="stylesheet" href="designer-element.css">
 
   <core-toolbar id="appbar" class="narrow">
-
-    <core-icon-button title="Toggle Code/Design" icon="unfold-more" class="rotate {{ {selected: selected === 'code'} | tokenList }}" name="code" on-tap="{{codeToggleAction}}"></core-icon-button>
-    
+    <div style="width: 351px;">&nbsp;</div>
+    <core-icon-button title="Toggle Fullwidth" icon="drawer" class="{{ {selected: maximized} | tokenList}}" on-tap="{{fullscreenAction}}"></core-icon-button>
     <span class="separator"></span>
-
+    <h2 flex>Page Title Here</h2>
+    <span class="separator"></span>
     <core-icon-button title="Save" icon="save" on-tap="{{saveAction}}"></core-icon-button>
     <!-- shareAction must be triggered from click to allow opening a tab (otherwise can only open a floating window) -->
-    <core-icon-button title="Share Gist" icon="social:share" on-click="{{shareAction}}"></core-icon-button>
-    <core-icon-button title="Launch Preview" icon="launch" on-click="{{previewAction}}"></core-icon-button>
+    <core-icon-button title="Publish for Mobile" icon="social:share" on-click="{{publishAction}}"></core-icon-button>
 
     <div class="design-controls" horizontal center layout hidden?="{{selected == 'code'}}">
       <span class="separator"></span>
       <core-icon-button title="Undo" disabled?="{{!$.state.canBack}}" icon="rotate-left" on-tap="{{undoAction}}"></core-icon-button>
       <core-icon-button title="Redo" disabled?="{{!$.state.canForward}}" icon="rotate-right" on-tap="{{redoAction}}"></core-icon-button>
       <span class="separator" hidden?="{{selected == 'code'}}"></span>
-      <core-icon-button title="Toggle Fullwidth" icon="drawer" class="{{ {selected: maximized} | tokenList}}" on-tap="{{fullscreenAction}}"></core-icon-button>
     </div>
 
   </core-toolbar>
 
   <core-pages flex selected="{{selected}}">
-   
-    <section name="design" horizontal layout>
-   
-      <div id="frameContainer" flex>
-        <iframe id="frame" src="frame.html"></iframe>
-      </div>
 
-      <!-- we want to constrain the design space so tools are not on top of it;
-      at the same time, we want tools to take up the vertical space -->
-      <div class="toolsPlaceholder {{ {maximized: maximized} | tokenList}}"></div>
+    <section name="design" horizontal layout>
 
       <div id="tools" class="{{ {maximized: maximized} | tokenList}}">
         <div class="splitterContainer" vertical layout>
           <div class="inspectorControls" flex vertical layout>
-            <core-toolbar class="designTools narrow">
-              <div id="selectedElement" flex>
-                <core-icon-button title="Select Parent" icon="arrow-back" on-click="{{selectParentElement}}" hidden?="{{!selectedName}}"></core-icon-button>
-                {{selectedName}}
-              </div>
-
-              <core-icon-button icon="fullscreen" on-tap="{{maximizeElement}}" title="Auto-size"></core-icon-button>
-              
-              <core-menu-button title="More..." icon="more-vert" halign="right">
-                <style>
-                  .core-selected {
-                    font-weight: normal;
-                  }
-
-                  core-item.rotate::shadow core-icon {
-                    transform: rotate(90deg);
-                    -webkit-transform: rotate(90deg);
-                  }
-                </style>
-                <core-item icon="arrow-back" class="rotate" label="Move Up" on-tap="{{moveoutElement}}"></core-item>
-                <core-item icon="arrow-back" label="Move Back" on-tap="{{promoteElement}}"></core-item>
-                <core-item icon="arrow-forward" label="Move Forward" on-tap="{{demoteElement}}"></core-item>
-                <core-item icon="delete" label="Delete" on-tap="{{deleteElement}}"></core-item>
-              </core-menu-button>
+            <core-toolbar class="designTools">
+              <core-item><img src="/assets/squaringcircle.svg" style="height: 2em; width: 2em; margin-right: 1em;" title="Alchemy Studio" alt="Alchemy Studio"></core-item>
+              <core-item flex label="Merlin Mobility"></core-item>
+              <core-item><img src="/assets/avatar.png" style="height: 2em; width: 2em; margin-left: 1em;" title="Merlin Mobility" alt="Company Avatar"><core-icon icon="arrow-drop-down"></core-item>
             </core-toolbar>
             <element-inspector flex id="inspector" on-bind-property="{{applyPropertyBinding}}"></element-inspector>
           </div>
-          
+
           <core-splitter direction="down"></core-splitter>
-          
+
           <div class="paletteTree" vertical layout>
             <core-selector id="tabs" valueAttr="name" selected="{{selectedTool}}">
-              <span name="palette">Palette</span>
-              <span name="tree">Tree</span>
+              <span name="palette">Objects</span>
+              <span name="tree">Targets</span>
             </core-selector>
-      
+
             <core-pages id="interior" flex valueAttr="id" selected="{{selectedTool}}">
               <design-palette id="palette" on-palette-drag="{{paletteDrag}}" mode="{{paletteMode}}"></design-palette>
               <design-tree id="tree" on-node-select="{{treeNodeSelected}}"></design-tree>
@@ -102,11 +72,18 @@
           </div>
 
         </div>
+
+      </div>
+
+      <!-- we want to constrain the design space so tools are not on top of it;
+      at the same time, we want tools to take up the vertical space -->
+      <div class="toolsPlaceholder {{ {maximized: maximized} | tokenList}}"></div>
+
+      <div id="frameContainer" flex>
+        <iframe id="frame" src="frame.html"></iframe>
       </div>
 
     </section>
-
-    <code-mirror id="code" name="code"></code-mirror>
 
   </core-pages>
 

@@ -3,6 +3,10 @@
   font-size: 15px;
 }
 
+h1, h2, h3, h4, h5 {
+  font-weight: 400;
+}
+
 iframe {
   width: 100%;
   height: 100%;
@@ -15,8 +19,8 @@ iframe {
 }
 
 #appbar {
-  background-color: #f2f2f2;
-  border-bottom: 1px solid silver;
+  background-color: steelblue;
+  border-bottom: 1px solid #666;
 }
 
 :host #appbar > .design-controls {
@@ -28,7 +32,7 @@ iframe {
 }
 
 .separator {
-  border-left: #656565 solid 1px;
+  border-left: #666 solid 1px;
   opacity: 0.8;
   height: 24px;
 }
@@ -75,9 +79,9 @@ core-icon-button.rotate {
 
 :host /deep/ #tabs {
   padding: 12px 12px 0;
-  background-color: #f2f2f2;
-  color: #a9a9a9;
-  border-bottom: 1px solid #ccc;
+  background-color: steelblue;
+  color: #CCC;
+  border-bottom: 1px solid #666;
 }
 
 :host /deep/ #tabs > * {
@@ -94,8 +98,8 @@ core-icon-button.rotate {
 }
 
 :host /deep/ #tabs > .core-selected {
-  color: #5d5d5d;
-  border-bottom: 1px solid #5d5d5d;
+  color: #FFF;
+  border-bottom: 2px solid #FFF;
 }
 
 #tools {
@@ -105,20 +109,20 @@ core-icon-button.rotate {
   overflow: hidden;
   top: 0;
   bottom: 0;
-  right: 0;
+  left: 0;
   width: 350px;
-  border-left: 1px solid silver;
+  border-right: 1px solid #333;
   -webkit-user-select: none;
 }
 
 #tools.maximized {
-  -webkit-transform: translate3d(350px, 0, 0);
-  transform: translate3d(350px, 0, 0);
+  -webkit-transform: translate3d(-350px, 0, 0);
+  transform: translate3d(-350px, 0, 0);
   box-shadow: none;
 }
 
 .toolsPlaceholder {
-  width: 350px;
+  width: 351px;
   -webkit-transition: width 0.3s ease-in-out;
   transition: width 0.3s ease-in-out;
 }
@@ -136,11 +140,11 @@ core-icon-button.rotate {
 }
 
 .inspectorControls {
-  background-color: white;
+  background-color: #333;
 }
 
 .designTools {
-  background-color: #f2f2f2;
+  background-color: steelblue;
 }
 
 .designTools::shadow ::content > * {
@@ -152,7 +156,8 @@ core-icon-button.rotate {
 }
 
 .paletteTree {
-  background-color: white;
+  background-color: #333;
+  color: #FFF;
   height: 50%;
 }
 

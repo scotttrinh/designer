@@ -1,0 +1,15 @@
+## Element Inspector
+
++ Finish gutting out this element and make a new custom element for
+  transformations.
++ Style the new toolbar, adding user avatar and user menu.
+
+## Drawer Header
+
++ Make logo link to main page
++ User menu (log out, settings, etc)
+
+## Main Toolbar
+
++ Page Title should be a drop down to facilitate page switching.
+
